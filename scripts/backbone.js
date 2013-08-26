@@ -1,4 +1,4 @@
-var appName = angular.module('appName',['ui.date','ui.bootstrap','ui.keypress']);
+var appName = angular.module('appName',['ui.date','ui.bootstrap','ui.keypress','ngRoute']);
 
 //Routing
 appName.config(function ($routeProvider) {
@@ -34,7 +34,15 @@ appName.controller('appController', function($scope, appSession){
 	$scope.alerts = [];
 	$scope.searchText;
 	
-
+    $scope.closeAlert = function(index) {
+        $scope.alerts.splice(index, 1);
+    };
+    $scope.updateTasks= function(data, status){
+        console.log("Success");
+    };
+    $scope.displayError = function(data, status){
+        console.log("Error");
+    };
   	//Initializer
 	init();
 	function init(){

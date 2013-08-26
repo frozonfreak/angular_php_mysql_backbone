@@ -18,7 +18,7 @@ class DB_Connect {
         // connecting to mysql
         try 
         {
-            $con = new PDO('mysql:host=localhost;dbname=db_taskmgr', DB_USER, DB_PASSWORD);
+            $con = new PDO('mysql:host=localhost;dbname=db_name', DB_USER, DB_PASSWORD);
             
             //Display connection detail
             //echo ("Connection Detail: " . $con);

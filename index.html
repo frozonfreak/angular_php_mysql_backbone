@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 	<head>
 		<meta charset="UTF-8">
-		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.min.css">
 	</head>
@@ -11,11 +11,13 @@
 		<div data-ng-view=''>
 		</div>
 	</body>
-	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-  	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-  	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular.min.js"></script>
-  	<script src='scripts/date.js'></script>
-  	<script src='scripts/ui-bootstrap-tpls-0.3.0.min.js'></script>
-  	<script src='scripts/keypress.js'></script>
+	<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+  	<script src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular.js"></script>
+  	<script>window.angular || document.write('<script src="scripts/vendor/angular.min.js"><\/script>');</script>
+  	<script src='scripts/vendor/angular-route.min.js'></script>
+  	<script src='scripts/vendor/date.js'></script>
+  	<script src='scripts/vendor/ui-bootstrap-tpls-0.5.0.min.js'></script>
+  	<script src='scripts/vendor/keypress.js'></script>
 	<script src='scripts/backbone.js'></script>
 </html>

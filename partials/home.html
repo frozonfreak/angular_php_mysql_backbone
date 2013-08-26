@@ -13,7 +13,7 @@
   </div>
 </div>
 <div class="container">
-	<alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert()">{{alert.msg}}</alert>
+	<alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
 	
 	
 </div>
