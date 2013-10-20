@@ -1,14 +1,19 @@
-var appName = angular.module('appName',['ui.date','ui.bootstrap','ui.keypress','ngRoute']);
+var appName = angular.module('appName',['ui.bootstrap','ui.router']);
 
 //Routing
-appName.config(function ($routeProvider) {
-    $routeProvider
-        .when('/',
-            {
-                controller: 'appController',
-                templateUrl: 'partials/home.html'
-            })
-        .otherwise({ redirectTo: '/' });
+appName.config(function($stateProvider, $urlRouterProvider) {
+
+  // Now set up the states
+  $stateProvider
+    .state('home', {
+      url: "/",
+      templateUrl: "partials/home.html",
+      controller: 'appController',
+    })
+
+    // For any unmatched url, redirect to /state1
+     $urlRouterProvider.otherwise("/404");
+
 });
 
 //Handle all HTTP calls to server
@@ -49,5 +54,8 @@ appName.controller('appController', function($scope, appSession){
 		
 		appSession.updateNewTask().success($scope.updateTasks).error($scope.displayError);
 	};
+    $scope.isActive = function (viewLocation) { 
+        return viewLocation === $location.path();
+    };
 	
 });
