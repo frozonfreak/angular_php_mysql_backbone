@@ -4,12 +4,10 @@
 	<head>
 		<meta charset="UTF-8">
 		<link rel="stylesheet" href="css/vendor/bootstrap.css">
-        <link rel="stylesheet" href="css/vendor/bootstrap-theme.css">
-        
         <link rel="stylesheet" href="css/style.css">
 	</head>
 	<body>
-		  <nav class="navbar navbar-inverse" role="navigation">
+		  <nav class="navbar" role="navigation">
           <!-- Brand and toggle get grouped for better mobile display -->
           <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -40,14 +38,14 @@
 
         <div ui-view ></div>
 	</body>
-	<script src='//code.jquery.com/jquery-2.0.3.min.js'></script>
+	<script src='//code.jquery.com/jquery-2.1.1.js'></script>
 	<!-- attempt to load AngularJS from CDN -->   
-	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.2/angular.min.js"></script>          
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>          
 
 
 	<!-- if AngularJS fails to load fallback a local version -->  
-	<script>window.angular || document.write('<script src="js/vendor/angular.min.js"><\/script>');</script> 
-  	<script src='scripts/vendor/ui-bootstrap-tpls-0.6.0.min.js'></script>
-  	<script src='scripts/vendor/angular-ui-router.min.js'></script>
+	<script>window.angular || document.write('<script src="scripts/vendor/angular.min.js"><\/script>');</script> 
+  	<script src='scripts/vendor/ui-bootstrap-tpls-0.11.0.js'></script>
+  	<script src='scripts/vendor/angular-ui-router.js'></script>
 	<script src='scripts/backbone.js'></script>
 </html>
