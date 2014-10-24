@@ -10,7 +10,11 @@ appName.config(function($stateProvider, $urlRouterProvider) {
       templateUrl: "partials/home.html",
       controller: 'appController',
     })
-
+    .state('link', {
+      url: "/link",
+      templateUrl: "partials/link.html",
+      controller: 'appLinkController',
+    })
     // For any unmatched url, redirect to /state1
      $urlRouterProvider.otherwise("/404");
 
@@ -19,43 +23,69 @@ appName.config(function($stateProvider, $urlRouterProvider) {
 //Handle all HTTP calls to server
 appName.factory('appSession', function($http){
     return {
-       	updateNewTask: function(name, detail, deadLine) {
+       	getCode: function() {
         	return $http.post('server/updateTask.php',{
-        		type		: 'newTask',
-        		taskName	: name,
-        		taskDetail 	: detail,
-        		deadLine 	: deadLine
+        		type		: 'getCode'
         	});
+        },
+        GenerateQRLink: function(){
+          return $http.post('server/updateTask.php',{
+            type    : 'generateQRLink'
+          });
+        },
+        checkCodeValidity: function(code){
+          return $http.post('server/updateTask.php',{
+            type    : 'checkCodeValidity',
+            code    : code
+          });
         }
     }
 });
 //controller
 appName.controller('appController', function($scope, appSession){
 
-	$scope.taskList = [];
-	$scope.task;
-	$scope.taskDetail;
-	$scope.deadLine;
-	$scope.alerts = [];
-	$scope.searchText;
-	
+	$scope.code;
+
     $scope.closeAlert = function(index) {
         $scope.alerts.splice(index, 1);
     };
     $scope.updateTasks= function(data, status){
-        console.log("Success");
+        if(data["status"] == 1)
+          $scope.code = data["message"];
+    };
+    $scope.updateAftCodeCheck = function(data, status){
+        console.log(data);
     };
     $scope.displayError = function(data, status){
         console.log("Error");
     };
+    $scope.checkCodeValidity = function(){
+      appSession.checkCodeValidity($scope.code).success($scope.updateAftCodeCheck).error($scope.displayError);
+    };
+
   	//Initializer
 	init();
 	function init(){
 		
-		appSession.updateNewTask().success($scope.updateTasks).error($scope.displayError);
+		appSession.getCode().success($scope.updateTasks).error($scope.displayError);
 	};
     $scope.isActive = function (viewLocation) { 
         return viewLocation === $location.path();
     };
 	
+});
+
+appName.controller('appLinkController', function($scope, appSession){
+  $scope.linkURL;
+  $scope.updtAfterGenerateCode= function(data, status){
+    if(data["status"] == 1)
+      $scope.linkURL = data["message"];
+  };
+  $scope.displayError = function(data, status){
+    console.log("Error");
+  };
+  init();
+  function init(){
+    appSession.GenerateQRLink().success($scope.updtAfterGenerateCode).error($scope.displayError);
+  };
 });
